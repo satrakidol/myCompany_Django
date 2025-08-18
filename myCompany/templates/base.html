@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Django App</title>
+
+  <!-- Bootstrap 4 CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" />
+  {% load static %}
+   <style>
+    body {
+      background-color: #f5faff;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    nav.navbar {
+      background-color: #007bff;
+    }
+
+    .navbar-brand,
+    .nav-link {
+      color: white !important;
+    }
+
+    .nav-link:hover {
+      color: #cce5ff !important;
+    }
+
+    .container {
+      margin-top: 40px;
+    }
+
+    h1, h2, h3 {
+      color: #004080;
+    }
+
+    li {
+      font-size: 18px;
+      margin-bottom: 6px;
+    }
+
+    /* Classic 3-line hamburger menu */
+    .navbar-toggler-icon {
+      display: inline-block;
+      width: 30px;
+      height: 22px;
+      position: relative;
+    }
+
+    .navbar-toggler-icon::before,
+    .navbar-toggler-icon::after,
+    .navbar-toggler-icon div {
+      content: '';
+      position: absolute;
+      left: 0;
+      width: 100%;
+      height: 4px;
+      background-color: white;
+      border-radius: 2px;
+      transition: 0.3s ease;
+    }
+
+    .navbar-toggler-icon::before {
+      top: 0;
+    }
+
+    .navbar-toggler-icon div {
+      top: 9px;
+    }
+
+    .navbar-toggler-icon::after {
+      bottom: 0;
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="navbar navbar-expand-lg">
+    <a class="navbar-brand" href={% url 'home' %}>My Company</a>
+
+    <!-- Hamburger menu button (only visible on small screens) -->
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon">
+        <div></div>
+      </span>
+    </button>
+
+    <!-- Collapsible menu -->
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav mx-auto">
+        <li class="nav-item active"><a class="nav-link" href="{% url 'home' %}">Home</a></li>
+        <li class="nav-item active"><a class="nav-link" href="{% url 'products' %}">Products</a></li>
+        <li class="nav-item active"><a class="nav-link" href="{% url 'employees' %}">Employees</a></li>
+        <li class="nav-item active"><a class="nav-link" href="{% url 'customers' %}">Customer</a></li>
+        <li class="nav-item"><a class="nav-link" href="#">About</a></li>
+        <li class="nav-item"><a class="nav-link" href="#">Contact</a></li>
+        <li class="nav-item active"><a class="nav-link" href='/admin/'>Admin</a></li>
+        <div style="display: flex; align-items: right;">
+          <img src="{% static 'images/cart.png' %}" alt="Cart" style="width: 40px; height: 40px;">
+        </div>
+        <div>
+        <form class="d-flex" role="search">
+        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"/>
+        <button class="btn btn-outline-success" type="submit">Search</button>
+        </form>
+        </div>
+      </ul>
+    </div>
+  </nav>
+
+  <div class="container">
+    {% block content %}{% endblock %}
+  </div>
+
+  <!-- Bootstrap 4 JavaScript (REQUIRED for toggle to work) -->
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h1>My Employees</h1>
+
+  <table class="table table-striped table-bordered">
+    <thead class="thead-dark">
+      <tr>
+        <th></th>
+        <th>Name</th>
+        <th>Surname</th>
+        <th>Role</th>
+        <th>Married</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for emps in Employees %}
+        <tr>
+          <td>{{ forloop.counter }}</td>
+          <td>{{ emps.name }}</td>
+          <td>{{ emps.surname }}</td>
+          <td>{{ emps.role }}</td>
+          <td>{{ emps.married|yesno:"Yes,No" }}</td>
+        </tr>
+      {% empty %}
+        <tr>
+          <td colspan="5">No employees found.</td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+{% endblock %}

@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="container mt-5">
+    <h1 class="mb-4">Our Products</h1>
+
+    <div class="row">
+        {% for product in Products %}
+            <div class="col-md-4 d-flex align-items-stretch">
+                <div class="card mb-4 w-100">
+
+                    <div class="product-image-wrapper" style="height: 200px; overflow: hidden;">
+                        {% if product.image %}
+                            <img src="{{ product.image.url }}" class="card-img-top h-100 w-100 object-fit-cover" alt="{{ product.name }}">
+                        {% else %}
+                            <img src="{% static 'images/default.png' %}" class="card-img-top h-100 w-100 object-fit-cover" alt="No image available">
+                        {% endif %}
+                    </div>
+
+                    <div class="card-body d-flex flex-column">
+                        <h5 class="card-title">{{ product.name }}</h5>
+                        <p class="card-text fw-bold mt-auto">${{ product.price }}</p>
+                        <a href="{% url 'buy_product' product.id %}" class="btn btn-primary mt-3">Buy</a>
+                    </div>
+                </div>
+            </div>
+        {% empty %}
+            <p>No products available.</p>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

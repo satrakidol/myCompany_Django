@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="container mt-5">
+    <h2>Purchase Confirmation</h2>
+    <div class="card mt-4" style="max-width: 500px;">
+        <div class="row g-0">
+            <div class="col-md-4">
+                {% if product.image %}
+                    <img src="{{ product.image.url }}" class="img-fluid rounded-start" alt="{{ product.name }}">
+                {% else %}
+                    <img src="{% static 'images/default.png' %}" class="img-fluid rounded-start" alt="No image available">
+                {% endif %}
+            </div>
+            <div class="col-md-8">
+                <div class="card-body">
+                    <h5 class="card-title">{{ product.name }}</h5>
+                    <p class="card-text fw-bold">${{ product.price }}</p>
+                    <p class="card-text">Thank you for choosing this product!</p>
+                    <a href="{% url 'products' %}" class="btn btn-primary">Back to Products</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
