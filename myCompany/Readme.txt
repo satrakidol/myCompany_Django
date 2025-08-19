@@ -1,3 +1,8 @@
+pip install django
+
+ django-admin startproject company
+ manage.py startapp myCompany
+
 Create Project
 django-admin startproject company
 python manage.py startapp myCompany
