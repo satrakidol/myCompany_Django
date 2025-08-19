@@ -1,5 +1,49 @@
-{% extends 'base.html' %}
+{% extends "base.html" %}
+{% load static %}
 
 {% block content %}
-cart
-{%endblock%}
+<div class="container mt-5">
+  <h2>Your Cart</h2>
+
+  {% if Products %}
+    <table class="table table-bordered mt-4">
+      <thead class="table-dark">
+        <tr>
+          <th>Image</th>
+          <th>Name</th>
+          <th>Price</th>
+          <th>Remove</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for product in Products %}
+        <tr>
+          <td>
+            {% if product.image %}
+              <img src="{{ product.image.url }}" alt="{{ product.name }}" style="width: 80px; height: auto;">
+            {% else %}
+              <img src="{% static 'images/no-image.png' %}" alt="No image" style="width: 80px; height: auto;">
+            {% endif %}
+          </td>
+          <td>{{ product.name }}</td>
+          <td>${{ product.price }}</td>
+          <td>
+            <a href="{% url 'remove_from_cart' product.id %}" class="btn btn-danger btn-sm">Remove</a>
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+
+    <div class="d-flex justify-content-between mt-4">
+      <a href="{% url 'products' %}" class="btn btn-secondary">Continue Shopping</a>
+      <a href="{% url 'checkout' %}" class="btn btn-success">Proceed to Checkout</a>
+    </div>
+
+  {% else %}
+    <div class="alert alert-info mt-4">
+      Your cart is empty. <a href="{% url 'products' %}">Shop now</a>.
+    </div>
+  {% endif %}
+</div>
+{% endblock %}

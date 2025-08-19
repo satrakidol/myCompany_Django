@@ -1,5 +1,14 @@
-   {% extends 'base.html' %}
+{% extends 'base.html' %}
 
 {% block content %}
    checkout
-   {%endblock%}
+   {%for product in selected_products%}
+   <div class="card-body">
+                    <h5 class="card-title">{{ product.name }}</h5>
+                    <p class="card-text fw-bold">${{ product.price }}</p>
+                    <p class="card-text">Thank you for choosing this product!</p>
+                    <a href="{% url 'products' %}" class="btn btn-primary">Back to Products</a>
+   </div>
+    {%endfor%}
+
+{%endblock%}

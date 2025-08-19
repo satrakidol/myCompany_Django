@@ -22,6 +22,10 @@
                         <h5 class="card-title">{{ product.name }}</h5>
                         <p class="card-text fw-bold mt-auto">${{ product.price }}</p>
                         <a href="{% url 'buy_product' product.id %}" class="btn btn-primary mt-3">Buy</a>
+                        <button class="btn btn-outline-success mt-2 add-to-cart" data-product-id="{{ product.id }}">
+  Add to Cart
+</button>
+
                     </div>
                 </div>
             </div>

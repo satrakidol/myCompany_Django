@@ -97,9 +97,20 @@
         <li class="nav-item"><a class="nav-link" href="#">About</a></li>
         <li class="nav-item"><a class="nav-link" href="#">Contact</a></li>
         <li class="nav-item active"><a class="nav-link" href='/admin/'>Admin</a></li>
-        <div style="display: flex; align-items: right;">
-          <img src="{% static 'images/cart.png' %}" alt="Cart" style="width: 40px; height: 40px;">
+        <div style="display: flex; align-items: center; gap: 8px;">
+          <a href="{% url 'cart' %}" style="position: relative; display: inline-block;">
+            <img src="{% static 'images/cart.png' %}"
+                 alt="Cart"
+                 style="width: 40px; height: 40px;">
+            <!-- Badge positioned on top-right of cart -->
+            <span id="cart-count"
+                  class="badge bg-danger"
+                  style="position: absolute; top: -5px; right: -5px;">
+                {{ cart_item_count }}
+            </span>
+          </a>
         </div>
+
         <div>
         <form class="d-flex" role="search">
         <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"/>
@@ -118,5 +129,26 @@
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const buttons = document.querySelectorAll(".add-to-cart");
+  const cartCount = document.getElementById("cart-count");
+
+  buttons.forEach(button => {
+    button.addEventListener("click", () => {
+      const productId = button.getAttribute("data-product-id");
+
+      fetch(`/add-to-cart/${productId}/`)
+        .then(response => response.json())
+        .then(data => {
+          cartCount.textContent = data.cart_item_count;
+        })
+        .catch(error => console.error("Error adding to cart:", error));
+    });
+  });
+});
+</script>
+
 </body>
 </html>
