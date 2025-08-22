@@ -56,7 +56,6 @@ def cart(request):
 
     return render(request, "cart.html", {"cart_items": cart_items,
                                          "total_quantity1": total_quantity1,
-                                         "subtotal": subtotal,
                                          "Total_cost": Total_cost})
 
 

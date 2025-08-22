@@ -10,11 +10,11 @@
             <div class="col-md-4 d-flex align-items-stretch">
                 <div class="card mb-4 w-100">
 
-                    <div class="product-image-wrapper" style="height: 200px; overflow: hidden;">
+                    <div class="product-image-wrapper d-flex justify-content-center align-items-center" style="height: 200px;">
                         {% if product.image %}
-                            <img src="{{ product.image.url }}" class="card-img-top h-100 w-100 object-fit-cover" alt="{{ product.name }}">
+                            <img src="{{ product.image.url }}" alt="{{ product.name }}" style="max-height: 100%; max-width: 100%; object-fit: contain;">
                         {% else %}
-                            <img src="{% static 'images/default.png' %}" class="card-img-top h-100 w-100 object-fit-cover" alt="No image available">
+                            <img src="{% static 'images/default.png' %}" alt="No image" style="max-height: 100%; max-width: 100%; object-fit: contain;">
                         {% endif %}
                     </div>
 
