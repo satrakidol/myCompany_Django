@@ -17,4 +17,11 @@ python manage.py migrate
 Create Superuser (Admin)
 python manage.py createsuperuser
 
+Clear Session
+
+python manage.py shell
+
+from django.contrib.sessions.models import Session
+Session.objects.all().delete()
+
 

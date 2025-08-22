@@ -99,16 +99,16 @@
         <li class="nav-item active"><a class="nav-link" href='/admin/'>Admin</a></li>
         <div style="display: flex; align-items: center; gap: 8px;">
           <a href="{% url 'cart' %}" style="position: relative; display: inline-block;">
-            <img src="{% static 'images/cart.png' %}"
-                 alt="Cart"
-                 style="width: 40px; height: 40px;">
-            <!-- Badge positioned on top-right of cart -->
-            <span id="cart-count"
-                  class="badge bg-danger"
-                  style="position: absolute; top: -5px; right: -5px;">
-                {{ cart_item_count }}
-            </span>
-          </a>
+          <img src="{% static 'images/cart.png' %}"
+               alt="Cart"
+               style="width: 40px; height: 40px;">
+          <!-- Badge positioned on top-right of cart -->
+          <span id="cart-count"
+                class="badge bg-danger"
+                style="position: absolute; top: -5px; right: -5px;">
+              {{ total_quantity1 }}
+          </span>
+        </a>
         </div>
 
         <div>

@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 
 {% block content %}
-   checkout
+   checkout{{Total_cost}}
    {%for product in selected_products%}
    <div class="card-body">
                     <h5 class="card-title">{{ product.name }}</h5>
@@ -10,5 +10,5 @@
                     <a href="{% url 'products' %}" class="btn btn-primary">Back to Products</a>
    </div>
     {%endfor%}
-
+<td>{{ product.Total_cost }}</td>
 {%endblock%}

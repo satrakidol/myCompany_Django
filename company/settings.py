@@ -23,9 +23,8 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 STATIC_URL = '/static/'
 
 # For global static folder
-STATICFILES_DIRS = [
-    BASE_DIR / "static",
-]
+#STATICFILES_DIRS = [BASE_DIR / "static",]
+
 
 STATIC_ROOT = BASE_DIR / "staticfiles"
 # Quick-start development settings - unsuitable for production
@@ -75,6 +74,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                #'myCompany.context_processors.cart_count'
             ],
         },
     },

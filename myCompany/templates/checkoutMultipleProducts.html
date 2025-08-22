@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="container mt-5">
+    <h2>Purchase Confirmation</h2>
+
+    {% if cart_items %}
+    <div class="row mt-4">
+        <!-- Products column -->
+        <div class="col-md-8">
+            {% for item in cart_items %}
+            <div class="card mb-3" style="max-width: 100%;">
+                <div class="row g-0">
+                    <div class="col-md-4">
+                        {% if item.product.image %}
+                            <img src="{{ item.product.image.url }}" class="img-fluid rounded-start" alt="{{ item.product.name }}">
+                        {% else %}
+                            <img src="{% static 'images/default.png' %}" class="img-fluid rounded-start" alt="No image">
+                        {% endif %}
+                    </div>
+                    <div class="col-md-8">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ item.product.name }}</h5>
+                            <p class="card-text fw-bold">Price: ${{ item.product.price }}</p>
+                            <p class="card-text">Quantity: {{ item.quantity }}</p>
+                            <p class="card-text fw-bold">Subtotal: ${{ item.subtotal }}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+
+        <!-- Summary column -->
+        <div class="col-md-4">
+            <div class="card p-3">
+                <h4>Total: ${{ total_price }}</h4>
+                <p class="card-text">Thank you for choosing us!</p>
+                <a href="{% url 'products' %}" class="btn btn-primary mt-2 w-100">Back to Products</a>
+            </div>
+        </div>
+    </div>
+    {% else %}
+        <div class="alert alert-info mt-4">
+            Your cart is empty.
+        </div>
+    {% endif %}
+</div>
+
+{% endblock %}

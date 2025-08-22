@@ -4,31 +4,41 @@
 {% block content %}
 <div class="container mt-5">
   <h2>Your Cart</h2>
+  <p>DEBUG cart count: {{ cart_item_count }}</p>
+  <p>DEBUG cart_items: {{ cart_items }}</p>
+  <p>DEBUG total_quantity: {{ total_quantity }}</p>cart_item_count
+  <p>DEBUG cart_item_count: {{ cart_item_count }}</p>
+  <p>DEBUG total_quantity1: {{ total_quantity1 }}</p>
 
-  {% if Products %}
+
+  {% if cart_items %}
     <table class="table table-bordered mt-4">
       <thead class="table-dark">
         <tr>
           <th>Image</th>
           <th>Name</th>
           <th>Price</th>
+          <th>Amount</th>
+          <th>Subtotal</th>
           <th>Remove</th>
         </tr>
       </thead>
       <tbody>
-        {% for product in Products %}
+        {% for item in cart_items %}
         <tr>
           <td>
-            {% if product.image %}
-              <img src="{{ product.image.url }}" alt="{{ product.name }}" style="width: 80px; height: auto;">
+            {% if item.product.image %}
+              <img src="{{ item.product.image.url }}" alt="{{ item.product.name }}" style="width: 80px; height: auto;">
             {% else %}
               <img src="{% static 'images/no-image.png' %}" alt="No image" style="width: 80px; height: auto;">
             {% endif %}
           </td>
-          <td>{{ product.name }}</td>
-          <td>${{ product.price }}</td>
+          <td>{{ item.product.name }}</td>
+          <td>${{ item.product.price }}</td>
+          <td>{{ item.quantity }}</td>
+          <td>{{ item.subtotal }}</td>
           <td>
-            <a href="{% url 'remove_from_cart' product.id %}" class="btn btn-danger btn-sm">Remove</a>
+            <a href="{% url 'remove_from_cart' item.product.id %}" class="btn btn-danger btn-sm">Remove</a>
           </td>
         </tr>
         {% endfor %}
@@ -37,7 +47,7 @@
 
     <div class="d-flex justify-content-between mt-4">
       <a href="{% url 'products' %}" class="btn btn-secondary">Continue Shopping</a>
-
+      <a href="{% url 'checkoutMultipleProducts' %}" class="btn btn-success">Check Out</a>
     </div>
 
   {% else %}
